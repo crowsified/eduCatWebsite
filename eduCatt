@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eduCat</title>
+  <style>
+    /* General */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3f1f5;
+      color: #4d4c4c;
+    }
+    .page {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .page.active {
+      display: flex;
+    }
+
+    /* Loading Screen */
+    .loading-container .logo {
+      width: 150px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Login Page */
+    .login-container {
+      text-align: center;
+    }
+    .login-container h1 {
+      color: #6b2fa6;
+    }
+    .login-container input {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 80%;
+    }
+    .login-container .btn {
+      background-color: #6b2fa6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    .social-login img {
+      width: 50px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #bfa2db;
+      padding: 10px 20px;
+      width: 100%;
+    }
+    .navbar .logo {
+      height: 40px;
+    }
+    .navbar .nav-link {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: 0.3s;
+    }
+    .navbar .nav-link:hover {
+      color: #7d56a4;
+    }
+
+    /* Portfolio Page */
+    .portfolio-container .folder {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      margin: 10px;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+    .portfolio-container .folder:hover {
+      transform: translateY(-10px);
+      background-color: #7d56a4;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page 1: Loading Screen -->
+  <div class="page active" id="page1">
+    <div class="loading-container">
+      <img src="eduCat-logo.gif" alt="eduCat Logo" class="logo">
+    </div>
+  </div>
+
+  <!-- Page 2: Login Page -->
+  <div class="page" id="page2">
+    <div class="login-container">
+      <h1>Log In</h1>
+      <form id="loginForm">
+        <input type="text" placeholder="Username" id="username" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button type="submit" class="btn">Log In</button>
+      </form>
+      <div class="social-login">
+        <img src="google-logo.png" alt="Google" id="googleLogin">
+        <img src="facebook-logo.png" alt="Facebook" id="facebookLogin">
+      </div>
+      <p>Don't have an account? <a href="#" id="createAccountLink">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- Page 3: Create Account -->
+  <div class="page" id="page3">
+    <div class="signup-container">
+      <h1>Create Account</h1>
+      <form id="signupForm">
+        <input type="text" placeholder="Name" id="signupName" required>
+        <input type="email" placeholder="Email" id="signupEmail" required>
+        <input type="password" placeholder="Password" id="signupPassword" required>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Page 4: Homepage -->
+  <div class="page" id="page4">
+    <nav class="navbar">
+      <img src="eduCat-logo.gif" alt="eduCat Logo" class="logo" id="homeLogo">
+      <div class="nav-links">
+        <a href="#" class="nav-link" id="portfolioPage">Portfolio</a>
+        <a href="#" class="nav-link" id="notesPage">Notepad</a>
+        <a href="#" class="nav-link" id="settingsPage">Settings</a>
+        <a href="#" class="nav-link" id="userSettingsPage">User Settings</a>
+      </div>
+    </nav>
+    <h1>Welcome to eduCat!</h1>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const showPage = (id) => {
+      pages.forEach((page) => page.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    };
+
+    // Navigation
+    setTimeout(() => showPage('page2'), 3000);
+
+    document.getElementById('createAccountLink').onclick = (e) => {
+      e.preventDefault();
+      showPage('page3');
+    };
+
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signupName').value;
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+
+      if (name && email && password) {
+        alert(`Account created for ${name}!`);
+        showPage('page4');
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+  </script>
+</body>
+</html>

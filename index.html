@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eduCat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f3f1f5; /* Light background */
+    }
+
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .loading-container img {
+      width: 150px; /* Adjust the size of the GIF */
+      height: auto;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+    }
+  </style>
+  <script>
+    // Redirect to the next page after 3 seconds
+    setTimeout(function () {
+      window.location.href = "login.html"; // Replace with the actual next page URL
+    }, 3000);
+  </script>
+</head>
+<body>
+  <div class="loading-container">
+    <img src="eduCat.gif" alt="eduCat Loading Animation" style="width:50%;">
+  </div>
+</body>
+</html>

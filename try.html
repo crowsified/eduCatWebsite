@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eduCat - Notepad</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #6b2fa6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 5px 10px;
+            background-color: #bfa2db;
+            box-sizing: border-box;
+        }
+
+        .navbar img {
+            height: 40px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-links button:hover {
+            background-color: #7d56a4;
+        }
+
+        .nav-links button:not(:last-child) {
+            border-right: 1px solid white; /* Divider between buttons */
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 20%;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto; /* Make sidebar scrollable */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .sidebar button {
+            background-color: #6b2fa6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1em;
+        }
+
+        .sidebar button:hover {
+            background-color: #7d56a4;
+        }
+
+        .notepad-container {
+            width: 70%;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .note-title, .note-content {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%; /* Ensure content does not pass the container */
+        }
+
+        .notepad-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .notepad-header h1 {
+            font-size: 1.2em;
+            color: #6b2fa6;
+            margin: 0;
+        }
+
+        .notepad-header select {
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .notepad-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap; /* Allow buttons to wrap */
+        }
+
+        .notepad-buttons button {
+            background-color: #6b2fa6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9em; /* Adjusted font size */
+        }
+
+        .notepad-buttons button:hover {
+            background-color: #7d56a4;
+        }
+
+        .outer-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            position: relative;
+        }
+
+        .inner-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 400px; /* Adjust the height as needed */
+            overflow-y: scroll;
+            box-sizing: border-box;
+            margin-bottom: 50px; /* Space for fixed buttons */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            box-shadow: none; /* Remove shadow inside the inner box */
+        }
+
+        .notepad-textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Tahoma, sans-serif; /* Default font */
+            text-align: left; /* Align text to the left */
+            resize: none; /* Prevent resizing */
+        }
+
+        .note-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .note {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .note-title {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .note-content {
+            display: none; /* Hide the note content in the sidebar preview */
+            font-size: 0.9em;
+            color: #6b2fa6;
+        }
+
+        .control-buttons {
+            position: absolute;
+            bottom: 10px; /* Adjust the position as needed */
+            right: 10px; /* Adjust the position as needed */
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-buttons button {
+            background-color: #6b2fa6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.9em; /* Adjusted font size */
+        }
+
+        .control-buttons button:hover {
+            background-color: #7d56a4;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'">
+        <div class="nav-links">
+            <button onclick="window.location.href='portfolio.html'">Portfolio</button>
+            <button onclick="window.location.href='notepad.html'">Notepad</button>
+            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon" style="height: 30px;"></button>
+            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon" style="height: 30px;"></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <button onclick="addNewNote()">+ New Note</button>
+            <button class="minimize-btn" onclick="minimizeNote()">- Minimize</button>
+            <div id="note-container" class="note-container"></div>
+        </div>
+        <div class="notepad-container" id="notepad-container">
+            <div class="outer-box">
+                <div class="notepad-header">
+                    <h1 class="note-title">
+                        <input type="text" id="note-title" placeholder="Untitled Note" style="width: 100%; padding: 10px; font-size: 1.2em; box-sizing: border-box;">
+                    </h1>
+                    <div class="notepad-buttons">
+                        <select id="font-select" onchange="changeFont()">
+                            <option value="Arial">Arial</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Tahoma">Tahoma</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Garamond">Garamond</option>
+                            <option value="Courier New">Courier New</option>
+                        </select>
+                        <button onclick="document.execCommand('bold', false, '');"><b>B</b></button>
+                        <button onclick="document.execCommand('italic', false, '');"><i>I</i></button>
+                        <button onclick="document.execCommand('formatBlock', false, 'h2');">H2</button>
+                        <button onclick="document.execCommand('formatBlock', false, 'h3');">H3</button>
+                        <button onclick="addBullet()">• Bullet</button>
+                        <button onclick="addCheckbox()">☑ To-Do</button>
+                    </div>
+                </div>
+                <div class="inner-box">
+                    <div contenteditable="true" class="notepad-textarea" id="note-content" placeholder="Type your notes here..."></div>
+                </div>
+                <div class="control-buttons">
+                    <button onclick="saveNote()" class="save-button">Save</button>
+                    <button onclick="deleteCurrentNote()" class="delete-button">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            loadNotes();
+        });
+
+        let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+        function saveNote() {
+            const title = document.getElementById('note-title').value;
+            const content = document.getElementById('note-content').innerHTML;
+            const noteIndex = document.getElementById('note-title').dataset.index;
+
+            if (notes.length >= 10 && (noteIndex === undefined || noteIndex === '')) {
+                alert("Maximum of 10 notes allowed.");
+                return;
+            }
+
+            if (noteIndex === undefined || noteIndex === '') {
+                notes.push({ title, content });
+            } else {
+                notes[noteIndex] = { title, content };
+            }
+            
+            localStorage.setItem('notes', JSON.stringify(notes));
+            loadNotes();
+        }
+
+        function loadNotes() {
+            notes = JSON.parse(localStorage.getItem('notes')) || [];
+            const noteContainer = document.getElementById('note-container');
+            noteContainer.innerHTML = ''; // Clear the container first
+            notes.forEach((note, index) => {
+                const noteElement = document.createElement('div');
+                noteElement.classList.add('note');
+                noteElement.innerHTML = `
+                    <div class="note-title">${note.title}</div>
+                `;
+                noteElement.addEventListener('click', () => editNote(index));
+                noteContainer.appendChild(noteElement);
+            });
+        }
+
+        function changeFont() {
+            const fontSelect = document.getElementById('font-select');
+            document.getElementById('note-content').style.fontFamily = fontSelect.value;
+        }
+
+        function minimizeNote() {
+            const container = document.getElementById('notepad-container');
+            container.style.display = 'none';
+        }
+
+        function addNewNote() {
+            if (notes.length >= 10) {
+                alert("Maximum of 10 notes allowed.");
+                return;
+            }
+
+            const container = document.getElementById('notepad-container');
+            container.style.display = 'block';
+            document.getElementById('note-title').value = '';
+            document.getElementById('note-content').innerHTML = '';
+            document.getElementById('note-title').dataset.index = '';
+        }
+
+        function addBullet() {
+            const noteContent = document.getElementById('note-content');
+            document.execCommand('insertHTML', false, '<span>• </span>');
+            noteContent.focus();
+        }
+
+        function addCheckbox() {
+            const noteContent = document.getElementById('note-content');
+            document.execCommand('insertHTML', false, '<input type="checkbox" class="checkbox"> ');
+            noteContent.focus();
+        }
+
+        function editNote(index) {
+            const note = notes[index];
+            document.getElementById('note-title').value = note.title;
+            document.getElementById('note-content').innerHTML = note.content;
+            document.getElementById('note-title').dataset.index = index;
+            const container = document.getElementById('notepad-container');
+            container.style.display = 'block';
+        }
+
+        function deleteNote(index) {
+            notes.splice(index, 1); // Remove the note from the array
+            localStorage.setItem('notes', JSON.stringify(notes)); // Update local storage
+            loadNotes(); // Reload notes to update the UI
+        }
+
+        function deleteCurrentNote() {
+            const noteIndex = document.getElementById('note-title').dataset.index;
+            if (noteIndex !== undefined && noteIndex !== '') {
+                deleteNote(noteIndex);
+                addNewNote();
+            }
+        }
+    </script>
+</body>
+</html>

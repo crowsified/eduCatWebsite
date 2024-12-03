@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eduCat - Settings</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #6b2fa6;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .dark-mode {
+            background-color: #333;
+            color: #f2f2f2;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 5px 10px; /* Reduced padding */
+            background-color: #bfa2db;
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+
+        .navbar img {
+            height: 40px; /* Adjusted logo size */
+            cursor: pointer;
+            margin-left: 20px; /* Added margin to the left side */
+        }
+
+        .nav-links, .settings {
+            display: flex;
+            gap: 10px; /* Reduced space between items */
+        }
+
+        .nav-links button, .settings button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em; /* Reduced font size */
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-links button:hover, .settings button:hover {
+            background-color: #7d56a4;
+        }
+
+        .nav-links button:not(:last-child), .settings button:not(:last-child) {
+            border-right: 1px solid white; /* Thin line divider between buttons */
+        }
+
+        .settings img {
+            height: 30px; /* Enlarged image size */
+            display: block;
+            margin: 0 auto; /* Center the image inside the button */
+        }
+
+        .settings-container {
+            background-color: #d1c4e9;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .mode-toggle span {
+            margin-left: 10px;
+        }
+
+        .font-select {
+            margin-top: 20px;
+        }
+
+        .font-select label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .font-select select {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <div class="nav-links">
+            <button onclick="window.location.href='portfolio.html'">Portfolio</button>
+            <button onclick="window.location.href='notepad.html'">Notepad</button>
+            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon"></button>
+            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon"></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="settings-container">
+            <h2>SETTINGS:</h2>
+            <div class="mode-toggle" onclick="toggleMode()">
+                <div id="mode-icon">☀️</div>
+                <span id="mode-text">DAY</span>
+            </div>
+            <div class="font-select">
+                <label for="font-select">Change Font:</label>
+                <select id="font-select" onchange="changeFont()">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Garamond">Garamond</option>
+                    <option value="Courier New">Courier New</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const modeIcon = document.getElementById('mode-icon');
+            const modeText = document.getElementById('mode-text');
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                modeIcon.textContent = '☀️';
+                modeText.textContent = 'DAY';
+            } else {
+                body.classList.add('dark-mode');
+                modeIcon.textContent = '🌙';
+                modeText.textContent = 'NIGHT';
+            }
+        }
+
+        function changeFont() {
+            const fontSelect = document.getElementById('font-select');
+            document.body.style.fontFamily = fontSelect.value;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            body.classList.add('transition');
+        });
+    </script>
+</body>
+</html>

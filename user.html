@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eduCat - User Settings</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #6b2fa6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 5px 10px;
+            background-color: #bfa2db;
+            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+        }
+
+        .navbar img {
+            height: 40px; /* Adjusted logo size */
+            cursor: pointer;
+            margin-left: 20px; /* Added margin to the left side */
+        }
+
+        .nav-links, .settings {
+            display: flex;
+            gap: 10px; /* Reduced space between items */
+        }
+
+        .nav-links button, .settings button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em; /* Reduced font size */
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-links button:hover, .settings button:hover {
+            background-color: #7d56a4;
+        }
+
+        .nav-links button:not(:last-child), .settings button:not(:last-child) {
+            border-right: 1px solid white; /* Thin line divider between buttons */
+        }
+
+        .settings img {
+            height: 30px; /* Enlarged image size */
+            display: block;
+            margin: 0 auto; /* Center the image inside the button */
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .settings-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .settings-header h1 {
+            font-size: 1.5em;
+            color: #6b2fa6;
+            margin: 0;
+        }
+
+        .logout-button {
+            background-color: #6b2fa6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #7d56a4;
+        }
+
+        .avatar-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            position: relative;
+            margin: 10px;
+        }
+
+        .avatar img {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .avatar img:hover {
+            filter: brightness(0.5);
+        }
+
+        .avatar img:hover::after {
+            content: url('pen-icon.png'); /* Replace with the URL of the pen icon image */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-container label {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .input-container input, .input-container textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .input-container textarea {
+            resize: vertical;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <div class="nav-links">
+            <button onclick="window.location.href='portfolio.html'">Portfolio</button>
+            <button onclick="window.location.href='notepad.html'">Notepad</button>
+            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon"></button>
+            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon"></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h1>User Settings</h1>
+                <button class="logout-button" onclick="window.location.href='login.html'">Log Out</button>
+            </div>
+            <div class="avatar-container">
+                <div class="avatar">
+                    <img src="avatar1.png" alt="Avatar 1">
+                </div>
+                <div class="avatar">
+                    <img src="avatar2.png" alt="Avatar 2">
+                </div>
+                <div class="avatar">
+                    <img src="avatar3.png" alt="Avatar 3">
+                </div>
+                <div class="avatar">
+                    <img src="avatar4.png" alt="Avatar 4">
+                </div>
+                <div class="avatar">
+                    <img src="avatar5.png" alt="Avatar 5">
+                </div>
+                <div class="avatar">
+                    <img src="avatar6.png" alt="Avatar 6">
+                </div>
+                <div class="avatar">
+                    <img src="avatar7.png" alt="Avatar 7">
+                </div>
+                <div class="avatar">
+                    <img src="avatar8.png" alt="Avatar 8">
+                </div>
+                <div class="avatar">
+                    <img src="avatar9.png" alt="Avatar 9">
+                </div>
+                <div class="avatar">
+                    <img src="avatar10.png" alt="Avatar 10">
+                </div>
+            </div>
+            <div class="input-container">
+                <label for="name">Name:</label>
+                <input type="text" id="name" value="mizzi pomoy">
+            </div>
+            <div class="input-container">
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" value="2000-01-01">
+            </div>
+            <div class="input-container">
+                <label for="sex">Sex:</label>
+                <input type="text" id="sex" value="female">
+            </div>
+            <div class="input-container">
+                <label for="about-me">About Me:</label>
+                <textarea id="about-me" rows="4">i am gae</textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

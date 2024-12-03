@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eduCat - Home</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #6b2fa6;
+            overflow-x: hidden; 
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 5px 10px;
+            background-color: #bfa2db;
+            box-sizing: border-box; 
+        }
+
+        .navbar img {
+            height: 40px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .nav-links, .settings {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links button, .settings button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        .nav-links button:hover, .settings button:hover {
+            background-color: #7d56a4;
+        }
+
+        .nav-links button:not(:last-child), .settings button:not(:last-child) {
+            border-right: 1px solid white;
+        }
+
+        .settings img {
+            height: 30px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .welcome {
+            font-size: 3.5em;
+            color: #6b2fa6;
+            font-weight: bold;
+            margin: 20px 0;
+            margin-top: 50px;
+        }
+
+        .welcome img {
+            height: 1.3em;
+            vertical-align: above;
+        }
+
+        .description {
+            color: #6b2fa6;
+            font-size: 1.2em;
+            margin: 10px 0 10px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 0.5px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <div class="nav-links">
+            <button onclick="window.location.href='portfolio.html'">Portfolio</button>
+            <button onclick="window.location.href='notepad.html'">Notepad</button>
+            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon"></button>
+            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon"></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="welcome">Welcome to <img src="eduCat.png" alt="eduCat Logo" style="height: 1.0em;">!</div>
+        <div class="description">Your one-stop platform for managing your academic tasks and portfolios.</div>
+        <div class="description-separator"></div>
+        <div class="description">Here you can find your portfolios and tasks.</div>
+    </div>
+</body>
+</html>

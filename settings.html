@@ -14,12 +14,7 @@
             margin: 0;
             padding: 0;
             color: #6b2fa6;
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        .dark-mode {
-            background-color: #333;
-            color: #f2f2f2;
+            overflow-x: hidden; 
         }
 
         .navbar {
@@ -27,30 +22,30 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding: 5px 10px; /* Reduced padding */
+            padding: 5px 10px;
             background-color: #bfa2db;
-            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+            box-sizing: border-box; 
         }
 
         .navbar img {
-            height: 40px; /* Adjusted logo size */
+            height: 40px;
             cursor: pointer;
-            margin-left: 20px; /* Added margin to the left side */
+            margin-left: 20px;
         }
 
         .nav-links, .settings {
             display: flex;
-            gap: 10px; /* Reduced space between items */
+            gap: 10px;
         }
 
         .nav-links button, .settings button {
             background-color: transparent;
             border: none;
             color: white;
-            font-size: 1em; /* Reduced font size */
+            font-size: 1em;
             cursor: pointer;
             position: relative;
-            padding: 5px 10px; /* Reduced padding */
+            padding: 5px 10px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
@@ -61,71 +56,149 @@
         }
 
         .nav-links button:not(:last-child), .settings button:not(:last-child) {
-            border-right: 1px solid white; /* Thin line divider between buttons */
+            border-right: 1px solid white;
         }
 
-        .settings img {
-            height: 30px; /* Enlarged image size */
-            display: block;
-            margin: 0 auto; /* Center the image inside the button */
-        }
-
+        /* Settings Styles */
         .settings-container {
-            background-color: #d1c4e9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            margin: 20px auto;
             padding: 20px;
             border-radius: 10px;
-            width: 300px;
-            margin: 50px auto;
-            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .mode-toggle {
+        .settings-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .toggle-label {
             display: flex;
             align-items: center;
+            font-size: 1.2em;
+            color: #6b2fa6;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .slider {
+            width: 50px;
+            height: 25px;
+            background-color: #bfa2db;
+            position: relative;
+            border-radius: 25px;
             cursor: pointer;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .mode-toggle span {
             margin-left: 10px;
+            transition: background-color 0.3s;
         }
 
-        .font-select {
-            margin-top: 20px;
+        .slider::before {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            background-color: #fff;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
         }
 
-        .font-select label {
-            display: block;
-            margin-bottom: 5px;
+        .toggle-input:checked + .slider {
+            background-color: #2c1c35;
         }
 
-        .font-select select {
-            width: 100%;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        .toggle-input:checked + .slider::before {
+            transform: translateX(25px);
+        }
+
+        /* Font Select Box */
+        .font-select-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .font-select-box select {
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1d1124;
+        }
+
+        body.dark-mode .nav-links button {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .nav-links button:hover {
+            background-color: #160c1b;
+        }
+
+        body.dark-mode .settings-container {
+            background-color: #171717;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .settings-box {
+            background-color: #171717;
+        }
+
+        body.dark-mode .font-select-box {
+            background-color: #282a2b;
+        }
+
+        body.dark-mode .slider {
+            background-color: #282a2b;
+        }
+
+        body.dark-mode .slider::before {
+            background-color: #6b2fa6;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'">
         <div class="nav-links">
             <button onclick="window.location.href='portfolio.html'">Portfolio</button>
             <button onclick="window.location.href='notepad.html'">Notepad</button>
-            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon"></button>
-            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon"></button>
+            <button onclick="window.location.href='settings.html'"><img src="settings.png" alt="Settings Icon" style="height: 30px;"></button>
+            <button onclick="window.location.href='user.html'"><img src="user.png" alt="User Icon" style="height: 30px;"></button>
         </div>
     </div>
-    <div class="content">
-        <div class="settings-container">
-            <h2>SETTINGS:</h2>
-            <div class="mode-toggle" onclick="toggleMode()">
-                <div id="mode-icon">☀️</div>
-                <span id="mode-text">DAY</span>
-            </div>
-            <div class="font-select">
+    <div class="settings-container">
+        <h1>Settings:</h1>
+        <div class="settings-box">
+            <label for="mode-toggle" class="toggle-label">Mode: 
+                <input type="checkbox" id="mode-toggle" class="toggle-input">
+                <span class="slider"></span>
+            </label>
+            <div class="font-select-box">
                 <label for="font-select">Change Font:</label>
                 <select id="font-select" onchange="changeFont()">
                     <option value="Arial">Arial</option>
@@ -140,29 +213,43 @@
         </div>
     </div>
     <script>
-        function toggleMode() {
-            const body = document.body;
-            const modeIcon = document.getElementById('mode-icon');
-            const modeText = document.getElementById('mode-text');
-            if (body.classList.contains('dark-mode')) {
-                body.classList.remove('dark-mode');
-                modeIcon.textContent = '☀️';
-                modeText.textContent = 'DAY';
-            } else {
-                body.classList.add('dark-mode');
-                modeIcon.textContent = '🌙';
-                modeText.textContent = 'NIGHT';
-            }
-        }
-
-        function changeFont() {
-            const fontSelect = document.getElementById('font-select');
-            document.body.style.fontFamily = fontSelect.value;
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-            body.classList.add('transition');
+            const modeToggle = document.getElementById('mode-toggle');
+            const fontSelect = document.getElementById('font-select');
+
+            // Load user's preferences
+            const savedMode = localStorage.getItem('mode');
+            const savedFont = localStorage.getItem('font');
+
+            if (savedMode) {
+                document.body.classList.add(savedMode);
+                modeToggle.checked = savedMode === 'dark-mode';
+            }
+
+            if (savedFont) {
+                document.body.style.fontFamily = savedFont;
+                fontSelect.value = savedFont;
+            }
+
+            // Toggle mode
+            modeToggle.addEventListener('change', () => {
+                if (modeToggle.checked) {
+                    document.body.classList.add('dark-mode');
+                    document.body.classList.remove('light-mode');
+                    localStorage.setItem('mode', 'dark-mode');
+                } else {
+                    document.body.classList.add('light-mode');
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('mode', 'light-mode');
+                }
+            });
+
+            // Change font
+            fontSelect.addEventListener('change', () => {
+                const selectedFont = fontSelect.value;
+                document.body.style.fontFamily = selectedFont;
+                localStorage.setItem('font', selectedFont);
+            });
         });
     </script>
 </body>

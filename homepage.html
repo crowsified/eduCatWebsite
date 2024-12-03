@@ -25,6 +25,10 @@
             padding: 5px 10px;
             background-color: #bfa2db;
             box-sizing: border-box; 
+            position: fixed; /* Make the navbar fixed */
+            top: 0; /* Position it at the top */
+            left: 0; /* Position it at the left */
+            z-index: 1000; /* Ensure it stays on top of other elements */
         }
 
         .navbar img {
@@ -33,36 +37,33 @@
             margin-left: 20px;
         }
 
-        .nav-links, .settings {
+        .nav-links {
             display: flex;
             gap: 10px;
         }
 
-        .nav-links button, .settings button {
+        .nav-links button {
             background-color: transparent;
             border: none;
             color: white;
             font-size: 1em;
             cursor: pointer;
-            position: relative;
             padding: 5px 10px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
         }
 
-        .nav-links button:hover, .settings button:hover {
+        .nav-links button:hover {
             background-color: #7d56a4;
         }
 
-        .nav-links button:not(:last-child), .settings button:not(:last-child) {
+        .nav-links button:not(:last-child) {
             border-right: 1px solid white;
         }
 
-        .settings img {
+        .nav-links img {
             height: 30px;
-            display: block;
-            margin: 0 auto;
         }
 
         .content {
@@ -74,6 +75,7 @@
             width: 100%;
             text-align: center;
             padding: 20px;
+            margin-top: 60px; /* Add margin to avoid content being hidden behind the navbar */
         }
 
         .welcome {
@@ -105,7 +107,7 @@
 </head>
 <body>
     <div class="navbar">
-        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'">
         <div class="nav-links">
             <button onclick="window.location.href='portfolio.html'">Portfolio</button>
             <button onclick="window.location.href='notepad.html'">Notepad</button>

@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             color: #6b2fa6;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow-x: hidden; 
         }
 
         .navbar {
@@ -24,45 +24,46 @@
             width: 100%;
             padding: 5px 10px;
             background-color: #bfa2db;
-            box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+            box-sizing: border-box; 
+            position: fixed; /* Make the navbar fixed */
+            top: 0; /* Position it at the top */
+            left: 0; /* Position it at the left */
+            z-index: 1000; /* Ensure it stays on top of other elements */
         }
 
         .navbar img {
-            height: 40px; /* Adjusted logo size */
+            height: 40px;
             cursor: pointer;
-            margin-left: 20px; /* Added margin to the left side */
+            margin-left: 20px;
         }
 
-        .nav-links, .settings {
+        .nav-links {
             display: flex;
-            gap: 10px; /* Reduced space between items */
+            gap: 10px;
         }
 
-        .nav-links button, .settings button {
+        .nav-links button {
             background-color: transparent;
             border: none;
             color: white;
-            font-size: 1em; /* Reduced font size */
+            font-size: 1em;
             cursor: pointer;
-            position: relative;
-            padding: 5px 10px; /* Reduced padding */
+            padding: 5px 10px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
         }
 
-        .nav-links button:hover, .settings button:hover {
+        .nav-links button:hover {
             background-color: #7d56a4;
         }
 
-        .nav-links button:not(:last-child), .settings button:not(:last-child) {
-            border-right: 1px solid white; /* Thin line divider between buttons */
+        .nav-links button:not(:last-child) {
+            border-right: 1px solid white;
         }
 
-        .settings img {
-            height: 30px; /* Enlarged image size */
-            display: block;
-            margin: 0 auto; /* Center the image inside the button */
+        .nav-links img {
+            height: 30px;
         }
 
         .content {
@@ -74,6 +75,7 @@
             width: 100%;
             text-align: center;
             padding: 20px;
+            margin-top: 60px; /* Add margin to avoid content being hidden behind the navbar */
         }
 
         .settings-container {

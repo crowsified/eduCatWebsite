@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eduCat - Portfolio</title>
     <style>
+        /* General Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -14,7 +15,7 @@
             margin: 0;
             padding: 0;
             color: #6b2fa6;
-            overflow-x: hidden; 
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         .navbar {
@@ -24,7 +25,7 @@
             width: 100%;
             padding: 5px 10px;
             background-color: #bfa2db;
-            box-sizing: border-box; 
+            box-sizing: border-box;
             position: fixed; /* Make the navbar fixed */
             top: 0; /* Position it at the top */
             left: 0; /* Position it at the left */
@@ -79,63 +80,74 @@
         }
 
         .portfolio-container {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        .portfolio-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .portfolio-header h1 {
-            font-size: 1.5em;
-            color: #6b2fa6;
-            margin: 0;
+        .sidebar {
+            width: 20%;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .portfolio-header button {
+        .sidebar button {
             background-color: #6b2fa6;
             color: white;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
+            border-radius: 8px;
+            padding: 5px 10px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 1em;
         }
 
-        .portfolio-header button:hover {
+        .sidebar button:hover {
             background-color: #7d56a4;
         }
 
-        .portfolio-content {
-            text-align: left;
-        }
-
-        .portfolio-content h2 {
-            color: #6b2fa6;
+        .folder {
+            background-color: #e0d4f1;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.2em;
+            color: #6b2fa6;
             margin-bottom: 10px;
         }
 
-        .portfolio-content p {
-            font-size: 1em;
-            margin-bottom: 10px;
+        .file-preview {
+            width: 80%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Increased padding for more spacious look */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
+        .file-preview iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-bottom: 10px;
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'">
         <div class="nav-links">
             <button onclick="window.location.href='portfolio.html'">Portfolio</button>
             <button onclick="window.location.href='notepad.html'">Notepad</button>
@@ -145,18 +157,41 @@
     </div>
     <div class="content">
         <div class="portfolio-container">
-            <div class="portfolio-header">
-                <h1>Portfolio #1: A Comprehensive Study</h1>
-                <button>Download</button>
+            <div class="sidebar">
+                <div class="folder" onclick="openFolder('folder1')">Folder 1</div>
+                <div class="folder" onclick="openFolder('folder2')">Folder 2</div>
+                <div class="folder" onclick="openFolder('folder3')">Folder 3</div>
+                <div class="folder" onclick="openFolder('folder4')">Folder 4</div>
+                <div class="folder" onclick="openFolder('folder5')">Folder 5</div>
+                <div class="folder" onclick="openFolder('folder6')">Folder 6</div>
             </div>
-            <div class="portfolio-content">
-                <h2>Exploring Computer Science and the Five Major Computing Disciplines</h2>
-                <p><strong>Course:</strong> IIS Information Technology CIS 1102</p>
-                <p><strong>Date:</strong> 08/24/2024</p>
-                <p><strong>Presented by:</strong> mizzi pomoy</p>
-                <p>This presentation covers various aspects of computer science, including its five major computing disciplines...</p>
+            <div class="file-preview">
+                <iframe id="file-viewer" src="Pomoy-G1-CIS1102-Portfolio#1.pdf"></iframe>
             </div>
         </div>
     </div>
+    <script>
+        const files = {
+            folder1: "Pomoy-G1-CIS1102-Portfolio#1.pdf",
+            folder2: "Pomoy-G1-CIS1102-Portfolio#2.pdf",
+            folder3: "Pomoy-G1-CIS1102-Portfolio#3.pdf",
+            folder4: "Pomoy-G1-CIS1102-Portfolio#4.pdf",
+            folder5: "Pomoy-G1-CIS1102-Portfolio#5.pdf",
+            folder6: "Pomoy-G1-CIS1102-Portfolio#6.pdf"
+        };
+
+        function openFolder(folder) {
+            const currentFile = files[folder];
+            if (currentFile) {
+                previewFile(currentFile);
+            }
+        }
+
+        function previewFile(fileURL) {
+            const fileViewer = document.getElementById('file-viewer');
+            fileViewer.src = fileURL;
+            fileViewer.style.display = 'block';
+        }
+    </script>
 </body>
 </html>

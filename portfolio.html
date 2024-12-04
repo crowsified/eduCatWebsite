@@ -166,24 +166,26 @@
                 <div class="folder" onclick="openFolder('folder6')">Folder 6</div>
             </div>
             <div class="file-preview">
-                <iframe id="file-viewer" src="Pomoy-G1-CIS1102-Portfolio#1.pdf"></iframe>
+                <iframe id="file-viewer" src=""></iframe>
             </div>
         </div>
     </div>
     <script>
         const files = {
-            folder1: "Pomoy-G1-CIS1102-Portfolio#1.pdf",
-            folder2: "Pomoy-G1-CIS1102-Portfolio#2.pdf",
-            folder3: "Pomoy-G1-CIS1102-Portfolio#3.pdf",
-            folder4: "Pomoy-G1-CIS1102-Portfolio#4.pdf",
-            folder5: "Pomoy-G1-CIS1102-Portfolio#5.pdf",
-            folder6: "Pomoy-G1-CIS1102-Portfolio#6.pdf"
+            folder1: "Pomoy-G1-CIS1102-Portfolio%231.pdf",
+            folder2: "Pomoy-G1-CIS1102-Portfolio%232.pdf",
+            folder3: "Pomoy-G1-CIS1102-Portfolio%233.pdf",
+            folder4: "Pomoy-G1-CIS1102-Portfolio%234.pdf",
+            folder5: "Pomoy-G1-CIS1102-Portfolio%235.pdf",
+            folder6: "Pomoy-G1-CIS1102-Portfolio%236.pdf"
         };
 
         function openFolder(folder) {
             const currentFile = files[folder];
             if (currentFile) {
                 previewFile(currentFile);
+            } else {
+                alert('File not found: ' + folder);
             }
         }
 
@@ -192,6 +194,12 @@
             fileViewer.src = fileURL;
             fileViewer.style.display = 'block';
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            for (const folder in files) {
+                console.log(`Checking file: ${files[folder]}`);
+            }
+        });
     </script>
 </body>
 </html>

@@ -25,10 +25,10 @@
             padding: 5px 10px;
             background-color: #bfa2db;
             box-sizing: border-box; 
-            position: fixed; /* Make the navbar fixed */
-            top: 0; /* Position it at the top */
-            left: 0; /* Position it at the left */
-            z-index: 1000; /* Ensure it stays on top of other elements */
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
         }
 
         .navbar img {
@@ -75,7 +75,7 @@
             width: 100%;
             text-align: center;
             padding: 20px;
-            margin-top: 60px; /* Add margin to avoid content being hidden behind the navbar */
+            margin-top: 60px;
         }
 
         .welcome {
@@ -103,6 +103,31 @@
             background-color: #ccc;
             margin: 5px 0;
         }
+
+        body.dark-mode {
+            background-color: #181717;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #121212;
+        }
+
+        body.dark-mode .nav-links button {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .nav-links button:hover {
+            background-color: #160c1b;
+        }
+
+        body.dark-mode .welcome {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .description {
+            color: #6b2fa6;
+        }
     </style>
 </head>
 <body>
@@ -121,5 +146,19 @@
         <div class="description-separator"></div>
         <div class="description">Here you can find your portfolios and tasks.</div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedMode = localStorage.getItem('mode');
+            const savedFont = localStorage.getItem('font');
+
+            if (savedMode) {
+                document.body.classList.add(savedMode);
+            }
+
+            if (savedFont) {
+                document.body.style.fontFamily = savedFont;
+            }
+        });
+    </script>
 </body>
 </html>

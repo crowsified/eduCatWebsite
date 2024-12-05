@@ -234,6 +234,49 @@
         .control-buttons .delete-button:hover {
             background-color: #7d56a4;
         }
+
+        body.dark-mode {
+            background-color: #181717;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #121212;
+        }
+
+        body.dark-mode .nav-links button {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .nav-links button:hover {
+            background-color: #160c1b;
+        }
+
+        body.dark-mode .sidebar {
+            background-color: #171717;
+        }
+
+        body.dark-mode .notepad-container {
+            background-color: #282a2b;
+        }
+
+        body.dark-mode .outer-box, 
+        body.dark-mode .inner-box {
+            background-color: #282a2b;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .notepad-header h1, 
+        body.dark-mode .notepad-buttons button,
+        body.dark-mode .control-buttons .save-button,
+        body.dark-mode .control-buttons .delete-button {
+            color: #eaeaeb;
+        }
+
+        body.dark-mode .notepad-header select {
+            background-color: #6b2fa6;
+            color: #d6d6d6;
+        }
     </style>
 </head>
 <body>
@@ -290,12 +333,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             loadNotes();
+            applyUserPreferences();
         });
 
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
 
         function saveNote() {
-            const title = document.getElementById('note-title').value;
+            const title = document.getElementById('note-title').value || 'Untitled Note';
             const content = document.getElementById('note-content').innerHTML;
             const noteIndex = document.getElementById('note-title').dataset.index;
 
@@ -314,76 +358,57 @@
             loadNotes();
         }
 
+        function deleteCurrentNote() {
+            const noteIndex = document.getElementById('note-title').dataset.index;
+            if (noteIndex !== undefined && noteIndex !== '') {
+                notes.splice(noteIndex, 1);
+                localStorage.setItem('notes', JSON.stringify(notes));
+                loadNotes();
+            }
+        }
+
         function loadNotes() {
-            notes = JSON.parse(localStorage.getItem('notes')) || [];
             const noteContainer = document.getElementById('note-container');
             noteContainer.innerHTML = '';
             notes.forEach((note, index) => {
                 const noteElement = document.createElement('div');
-                noteElement.classList.add('note');
-                noteElement.innerHTML = `
-                    <div class="note-title">${note.title}</div>
-                `;
-                noteElement.addEventListener('click', () => editNote(index));
+                noteElement.className = 'note';
+                noteElement.innerHTML = `<div class="note-title">${note.title}</div>`;
+                noteElement.onclick = () => {
+                    document.getElementById('note-title').value = note.title;
+                    document.getElementById('note-title').dataset.index = index;
+                    document.getElementById('note-content').innerHTML = note.content;
+                };
                 noteContainer.appendChild(noteElement);
             });
         }
 
         function changeFont() {
-            const fontSelect = document.getElementById('font-select');
-            document.getElementById('note-content').style.fontFamily = fontSelect.value;
-        }
-
-        function minimizeNote() {
-            const container = document.getElementById('notepad-container');
-            container.style.display = 'none';
-        }
-
-        function addNewNote() {
-            if (notes.length >= 10) {
-                alert("Maximum of 10 notes allowed.");
-                return;
-            }
-
-            const container = document.getElementById('notepad-container');
-            container.style.display = 'block';
-            document.getElementById('note-title').value = '';
-            document.getElementById('note-content').innerHTML = '';
-            document.getElementById('note-title').dataset.index = '';
+            const selectedFont = document.getElementById('font-select').value;
+            document.getElementById('note-content').style.fontFamily = selectedFont;
+            localStorage.setItem('font', selectedFont);
         }
 
         function addBullet() {
-            const noteContent = document.getElementById('note-content');
-            document.execCommand('insertHTML', false, '<span>• </span>');
-            noteContent.focus();
+            document.execCommand('insertUnorderedList', false, null);
         }
 
         function addCheckbox() {
-            const noteContent = document.getElementById('note-content');
-            document.execCommand('insertHTML', false, '<input type="checkbox" class="checkbox"> ');
-            noteContent.focus();
+            const checkboxHtml = '<input type="checkbox">';
+            document.execCommand('insertHTML', false, checkboxHtml);
         }
 
-        function editNote(index) {
-            const note = notes[index];
-            document.getElementById('note-title').value = note.title;
-            document.getElementById('note-content').innerHTML = note.content;
-            document.getElementById('note-title').dataset.index = index;
-            const container = document.getElementById('notepad-container');
-            container.style.display = 'block';
-        }
+        function applyUserPreferences() {
+            const savedMode = localStorage.getItem('mode');
+            const savedFont = localStorage.getItem('font');
 
-        function deleteNote(index) {
-            notes.splice(index, 1);
-            localStorage.setItem('notes', JSON.stringify(notes));
-            loadNotes();
-        }
+            if (savedMode) {
+                document.body.classList.add(savedMode);
+            }
 
-        function deleteCurrentNote() {
-            const noteIndex = document.getElementById('note-title').dataset.index;
-            if (noteIndex !== undefined && noteIndex !== '') {
-                deleteNote(noteIndex);
-                addNewNote();
+            if (savedFont) {
+                document.getElementById('note-content').style.fontFamily = savedFont;
+                document.getElementById('font-select').value = savedFont;
             }
         }
     </script>

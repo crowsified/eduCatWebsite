@@ -59,7 +59,6 @@
             border-right: 1px solid white;
         }
 
-        /* Settings Styles */
         .settings-container {
             display: flex;
             flex-direction: column;
@@ -125,7 +124,6 @@
             transform: translateX(25px);
         }
 
-        /* Font Select Box */
         .font-select-box {
             display: flex;
             flex-direction: column;
@@ -141,14 +139,13 @@
             font-size: 1em;
         }
 
-        /* Dark Mode Styles */
         body.dark-mode {
-            background-color: #121212;
+            background-color: #181717;
             color: #6b2fa6;
         }
 
         body.dark-mode .navbar {
-            background-color: #1d1124;
+            background-color: #121212;
         }
 
         body.dark-mode .nav-links button {
@@ -160,7 +157,7 @@
         }
 
         body.dark-mode .settings-container {
-            background-color: #171717;
+            background-color: #121212;
             color: #6b2fa6;
         }
 
@@ -169,7 +166,7 @@
         }
 
         body.dark-mode .font-select-box {
-            background-color: #282a2b;
+            background-color: #171717;
         }
 
         body.dark-mode .slider {
@@ -217,7 +214,6 @@
             const modeToggle = document.getElementById('mode-toggle');
             const fontSelect = document.getElementById('font-select');
 
-            // Load user's preferences
             const savedMode = localStorage.getItem('mode');
             const savedFont = localStorage.getItem('font');
 
@@ -231,7 +227,6 @@
                 fontSelect.value = savedFont;
             }
 
-            // Toggle mode
             modeToggle.addEventListener('change', () => {
                 if (modeToggle.checked) {
                     document.body.classList.add('dark-mode');
@@ -244,7 +239,6 @@
                 }
             });
 
-            // Change font
             fontSelect.addEventListener('change', () => {
                 const selectedFont = fontSelect.value;
                 document.body.style.fontFamily = selectedFont;

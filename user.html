@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             color: #6b2fa6;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -24,11 +24,11 @@
             width: 100%;
             padding: 5px 10px;
             background-color: #bfa2db;
-            box-sizing: border-box; 
-            position: fixed; /* Make the navbar fixed */
-            top: 0; /* Position it at the top */
-            left: 0; /* Position it at the left */
-            z-index: 1000; /* Ensure it stays on top of other elements */
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         .navbar img {
@@ -67,116 +67,143 @@
         }
 
         .content {
-            flex: 1;
+            display: flex;
+            width: 90%;
+            margin-top: 60px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .left-box {
+            background-color: white;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 20%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            margin-top: 60px; /* Add margin to avoid content being hidden behind the navbar */
+            margin-right: 2%;
         }
 
-        .settings-container {
-            width: 80%;
-            max-width: 800px;
-            margin: 20px auto;
+        .right-box {
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            width: 70%;
         }
 
-        .settings-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+        .left-box img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
 
-        .settings-header h1 {
-            font-size: 1.5em;
-            color: #6b2fa6;
-            margin: 0;
+        .left-box .user-name {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 15px;
+            border-radius: 30px;
         }
 
-        .logout-button {
+        .left-box .log-out {
+            display: block;
             background-color: #6b2fa6;
             color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
+            padding: 10px;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 20px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            width: 40%;
         }
 
-        .logout-button:hover {
-            background-color: #7d56a4;
-        }
-
-        .avatar-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+        .right-box .title {
+            font-size: 1.4em;
             margin-bottom: 20px;
         }
 
-        .avatar {
-            position: relative;
-            margin: 10px;
-        }
-
-        .avatar img {
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-            transition: 0.3s;
-        }
-
-        .avatar img:hover {
-            filter: brightness(0.5);
-        }
-
-        .avatar img:hover::after {
-            content: url('pen-icon.png'); /* Replace with the URL of the pen icon image */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-        }
-
-        .input-container {
+        .right-box .form-group {
             margin-bottom: 20px;
         }
 
-        .input-container label {
+        .right-box label {
             display: block;
-            font-size: 1em;
+            font-size: 1.2em;
             margin-bottom: 5px;
         }
 
-        .input-container input, .input-container textarea {
+        .right-box input, .right-box select {
             width: 100%;
             padding: 10px;
             font-size: 1em;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 30px;
             box-sizing: border-box;
+            background-color: #ccc;
+            color: #6b2fa6;
         }
 
-        .input-container textarea {
-            resize: vertical;
+        .right-box input[readonly] {
+            background-color: #eeebeb;
         }
 
+        .right-box select {
+            pointer-events: none;
+            appearance: none;
+            background-color: #ccc;
+        }
+
+        body.dark-mode {
+            background-color: #181717;
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #121212;
+        }
+
+        body.dark-mode .nav-links button {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .nav-links button:hover {
+            background-color: #160c1b;
+        }
+
+        body.dark-mode .left-box {
+            background-color: #121212;
+        }
+
+        body.dark-mode .left-box .log-out {
+            background-color: #6b2fa6;
+        }
+
+        body.dark-mode .left-box .user-name {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .right-box {
+            background-color: #121212;
+        }
+
+        body.dark-mode .right-box .title,
+        body.dark-mode .right-box label {
+            color: #6b2fa6;
+        }
+
+        body.dark-mode .right-box input,
+        body.dark-mode .right-box select {
+            background-color: #dad9d9;
+            color: #6b2fa6;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'" style="height: 40px;">
+        <img src="eduCat.png" alt="eduCat Logo" onclick="window.location.href='homepage.html'">
         <div class="nav-links">
             <button onclick="window.location.href='portfolio.html'">Portfolio</button>
             <button onclick="window.location.href='notepad.html'">Notepad</button>
@@ -185,60 +212,91 @@
         </div>
     </div>
     <div class="content">
-        <div class="settings-container">
-            <div class="settings-header">
-                <h1>User Settings</h1>
-                <button class="logout-button" onclick="window.location.href='login.html'">Log Out</button>
+        <div class="left-box">
+            <img src="medev.jpg" alt="User Avatar" id="user-avatar">
+            <input type="text" id="user-name-display" value="Mizzi Pomoy" readonly class="user-name">
+            <div class="log-out" onclick="logOut()">Log Out</div>
+        </div>
+        <div class="right-box">
+            <div class="title">About Developer</div>
+            <div class="form-group">
+                <label for="id">Student ID</label>
+                <input type="text" id="id" value="24102571" readonly>
             </div>
-            <div class="avatar-container">
-                <div class="avatar">
-                    <img src="avatar1.png" alt="Avatar 1">
-                </div>
-                <div class="avatar">
-                    <img src="avatar2.png" alt="Avatar 2">
-                </div>
-                <div class="avatar">
-                    <img src="avatar3.png" alt="Avatar 3">
-                </div>
-                <div class="avatar">
-                    <img src="avatar4.png" alt="Avatar 4">
-                </div>
-                <div class="avatar">
-                    <img src="avatar5.png" alt="Avatar 5">
-                </div>
-                <div class="avatar">
-                    <img src="avatar6.png" alt="Avatar 6">
-                </div>
-                <div class="avatar">
-                    <img src="avatar7.png" alt="Avatar 7">
-                </div>
-                <div class="avatar">
-                    <img src="avatar8.png" alt="Avatar 8">
-                </div>
-                <div class="avatar">
-                    <img src="avatar9.png" alt="Avatar 9">
-                </div>
-                <div class="avatar">
-                    <img src="avatar10.png" alt="Avatar 10">
-                </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="text" id="age" value="18" readonly>
             </div>
-            <div class="input-container">
-                <label for="name">Name:</label>
-                <input type="text" id="name" value="mizzi pomoy">
+            <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="text" id="birthday" value="February 7, 2006" readonly>
             </div>
-            <div class="input-container">
-                <label for="birthday">Birthday:</label>
-                <input type="date" id="birthday" value="2000-01-01">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="text" id="gender" value="Female" readonly>
             </div>
-            <div class="input-container">
-                <label for="sex">Sex:</label>
-                <input type="text" id="sex" value="female">
-            </div>
-            <div class="input-container">
-                <label for="about-me">About Me:</label>
-                <textarea id="about-me" rows="4">i am gae</textarea>
+            <div class="form-group">
+                <label for="school">School</label>
+                <input type="text" id="school" value="University of San Carlos - Talamban Campus" readonly>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserInfo();
+            applyUserPreferences();
+        });
+
+        function loadUserInfo() {
+            const userName = localStorage.getItem('userName') || 'Mizzi Pomoy';
+            const birthday = localStorage.getItem('birthday') || 'February 7, 2006';
+            const gender = localStorage.getItem('gender') || 'Female';
+            const school = localStorage.getItem('school') || 'University of San Carlos - Talamban Campus';
+
+            document.getElementById('user-name-display').value = userName;
+            document.getElementById('birthday').value = birthday;
+            document.getElementById('gender').value = gender;
+            document.getElementById('school').value = school;
+
+            updateAge(birthday);
+        }
+
+        function updateAge(birthday) {
+            const birthDate = new Date(birthday);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            document.getElementById('age').value = age;
+        }
+
+        function logOut() {
+            window.location.href = 'login.html';
+        }
+
+        function applyUserPreferences() {
+            const savedMode = localStorage.getItem('mode');
+            const savedFont = localStorage.getItem('font');
+
+            if (savedMode) {
+                document.body.classList.add(savedMode);
+            }
+
+            if (savedFont) {
+                document.body.style.fontFamily = savedFont;
+                document.getElementById('user-name-display').style.fontFamily = savedFont;
+                fontFamily = savedFont;
+                document.getElementById('age').style.fontFamily = savedFont;
+                document.getElementById('birthday').style.fontFamily = savedFont;
+                document.getElementById('gender').style.fontFamily = savedFont;
+                document.getElementById('school').style.fontFamily = savedFont;
+                document.getElementById('id').style.fontFamily = savedFont;
+            }
+        }
+    </script>
 </body>
 </html>
